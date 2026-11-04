@@ -1,0 +1,104 @@
+.bg-live {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  --mx: 50vw;
+  --my: 50vh;
+  --px: 0;
+  --py: 0;
+}
+
+/* Cursor ke peeche chalne wali roshni */
+.bg-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    380px circle at var(--mx) var(--my),
+    rgba(139, 92, 246, 0.22),
+    rgba(99, 102, 241, 0.08) 45%,
+    transparent 70%
+  );
+}
+
+/* Dots jo sirf cursor ke paas dikhte hain */
+.bg-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(99, 102, 241, 0.55) 1.2px, transparent 1.2px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(260px circle at var(--mx) var(--my), #000, transparent 100%);
+  mask-image: radial-gradient(260px circle at var(--mx) var(--my), #000, transparent 100%);
+}
+
+/* Floating blobs */
+.bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+}
+
+.bg-blob-1 {
+  width: 420px; height: 420px;
+  top: -80px; left: -60px;
+  background: #6366f1;
+  translate: calc(var(--px) * 50px) calc(var(--py) * 40px);
+  animation: float1 16s ease-in-out infinite alternate;
+}
+.bg-blob-2 {
+  width: 360px; height: 360px;
+  top: 25%; right: -80px;
+  background: #8b5cf6;
+  translate: calc(var(--px) * -70px) calc(var(--py) * 50px);
+  animation: float2 20s ease-in-out infinite alternate;
+}
+.bg-blob-3 {
+  width: 320px; height: 320px;
+  bottom: -90px; left: 35%;
+  background: #ec4899;
+  opacity: 0.35;
+  translate: calc(var(--px) * 40px) calc(var(--py) * -60px);
+  animation: float3 18s ease-in-out infinite alternate;
+}
+
+@keyframes float1 { to { transform: translate(60px, 50px) scale(1.15); } }
+@keyframes float2 { to { transform: translate(-50px, 70px) scale(0.9); } }
+@keyframes float3 { to { transform: translate(70px, -40px) scale(1.1); } }
+
+/* Jinko animation pasand nahi (accessibility) unke liye band */
+@media (prefers-reduced-motion: reduce) {
+  .bg-blob { animation: none; }
+}
+
+/* Touch devices par cursor nahi hota, to dots aur glow hata do */
+@media (hover: none) {
+  .bg-dots, .bg-glow { display: none; }
+}
+/* Diwali special */
+.bg-live::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 8% 12%,  #fff, transparent),
+    radial-gradient(1px   1px   at 22% 28%, #fde68a, transparent),
+    radial-gradient(1.5px 1.5px at 35% 8%,  #fff, transparent),
+    radial-gradient(1px   1px   at 48% 22%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 62% 10%, #fde68a, transparent),
+    radial-gradient(1px   1px   at 74% 30%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 86% 14%, #fff, transparent),
+    radial-gradient(1px   1px   at 94% 26%, #fde68a, transparent),
+    radial-gradient(1px   1px   at 15% 42%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 55% 40%, #fff, transparent),
+    radial-gradient(1px   1px   at 80% 46%, #fde68a, transparent);
+  animation: starTwinkle 4s ease-in-out infinite alternate;
+}
+@keyframes starTwinkle {
+  from { opacity: 0.45; }
+  to   { opacity: 1; }
+}
+.bg-blob-1 { background: #7c3aed; opacity: 0.4; }
+.bg-blob-2 { background: #f97316; opacity: 0.3; }
+.bg-blob-3 { background: #fbbf24; opacity: 0.25; }

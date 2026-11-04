@@ -1,0 +1,270 @@
+/* ---------- Gift box button ---------- */
+.gift {
+  position: fixed;
+  left: 14px;
+  bottom: 84px;
+  z-index: 1100;
+  width: 64px;
+  height: 70px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  animation: giftBounce 2s ease-in-out infinite;
+  filter: drop-shadow(0 6px 14px rgba(236, 72, 153, 0.5));
+}
+@keyframes giftBounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+.gift-body {
+  position: absolute;
+  bottom: 0; left: 4px;
+  width: 56px; height: 38px;
+  border-radius: 4px 4px 8px 8px;
+  background: linear-gradient(135deg, #ec4899, #be185d);
+}
+.gift-lid {
+  position: absolute;
+  bottom: 36px; left: 0;
+  width: 64px; height: 16px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #f472b6, #db2777);
+  transform-origin: left bottom;
+}
+.gift-body::after,
+.gift-lid::after {                  /* sunehri ribbon */
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 10px;
+  margin-left: -5px;
+  background: #fbbf24;
+}
+.gift-bow {
+  position: absolute;
+  top: -17px; left: 50%;
+  margin-left: -11px;
+  font-style: normal;
+  font-size: 22px;
+  line-height: 1;
+  z-index: 2;
+}
+.gift-tip {
+  position: absolute;
+  top: -26px; left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1e1b4b;
+  background: #fde68a;
+}
+.gift.opening .gift-body { box-shadow: 0 0 40px 14px rgba(251, 191, 36, 0.9); }
+.gift.opening .gift-lid  { animation: lidFly 1s ease-in forwards; }
+@keyframes lidFly {
+  to { transform: translate(24px, -80px) rotate(35deg); opacity: 0; }
+}
+
+/* ---------- Modal common ---------- */
+.gq-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  background: rgba(15, 12, 41, 0.6);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.25s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } }
+@keyframes popIn  { from { opacity: 0; transform: scale(0.85); } }
+
+/* ---------- MCQ ---------- */
+.gq-box {
+  width: min(460px, 100%);
+  padding: 22px;
+  border-radius: 18px;
+  color: #fff;
+  background: linear-gradient(135deg, #312e81, #5b21b6);
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+  animation: popIn 0.3s ease;
+}
+.gq-box h3 { font-size: 1.1rem; color: #fde68a; }
+.gq-q { margin: 12px 0; font-weight: 600; }
+.gq-options { display: grid; gap: 8px; }
+.gq-opt {
+  padding: 10px 14px;
+  text-align: left;
+  color: #fff;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+.gq-opt:hover:not(:disabled) { background: rgba(251, 191, 36, 0.25); border-color: #fbbf24; }
+.gq-opt.wrong {
+  background: rgba(239, 68, 68, 0.3);
+  border-color: #ef4444;
+  text-decoration: line-through;
+  animation: shake 0.4s;
+}
+.gq-msg { margin: 12px 0 0; color: #fecaca; font-size: 0.9rem; }
+@keyframes shake {
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+/* ---------- Celebration card (60% area) ---------- */
+/* ---------- Celebration card (60% area) ---------- */
+.gc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  height: 60vh;
+  min-width: 340px;
+  overflow: hidden;                 /* ab scroll nahi, kyunki sab fit hoga */
+  padding: 1.2vh 2vw;
+  text-align: center;
+  color: #fff7ed;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(251, 191, 36, 0.25), transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(236, 72, 153, 0.22), transparent 40%),
+    linear-gradient(135deg, #1e1b4b, #4c1d95);
+  border: 2px solid #fbbf24;
+  box-shadow: 0 0 50px rgba(251, 191, 36, 0.45);
+  animation: popIn 0.45s cubic-bezier(0.2, 1.3, 0.4, 1);
+}
+.gc-card > * { flex-shrink: 0; }
+
+.gc-close {
+  position: absolute;
+  top: 8px; right: 10px;
+  z-index: 3;
+  width: 28px; height: 28px;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+}
+.gc-close:hover { background: rgba(239, 68, 68, 0.7); }
+
+.gc-bulbs { display: flex; justify-content: space-between; padding: 0 30px 0 6px; }
+.gc-bulbs span {
+  width: 8px; height: 12px;
+  border-radius: 50% 50% 45% 45%;
+  background: var(--c);
+  box-shadow: 0 0 8px 2px var(--c);
+  animation: twinkle 1.6s ease-in-out infinite;
+  animation-delay: var(--d);
+}
+
+.gc-flowers {
+  font-size: clamp(14px, 2.6vh, 20px);
+  line-height: 1.2;
+  letter-spacing: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.gc-title {
+  margin: 0.5vh 0 1vh;
+  font-size: clamp(1.1rem, 4.2vh, 1.9rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #fde68a;
+  text-shadow: 0 0 18px rgba(251, 191, 36, 0.7);
+}
+
+/* Beech ka hissa: bachi hui poori jagah le leta hai */
+.gc-body {
+  flex: 1 1 auto !important;
+  min-height: 0;
+  display: flex;
+  gap: 2vw;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+}
+
+.gc-photo {
+  flex: 0 0 36%;
+  margin: 0;
+  padding: 0.8vh 0.8vh 0.6vh;
+  text-align: center;
+  color: #4c1d95;
+  background: #fffbeb;
+  border-radius: 8px;
+  transform: rotate(-2.5deg);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+}
+.gc-photo img,
+.gc-family {
+  display: block;
+  width: 100%;
+  height: clamp(80px, 21vh, 190px);   /* photo ki height screen ke hisaab se */
+  object-fit: cover;
+  border-radius: 4px;
+  background: #fff7ed;
+}
+.gc-photo figcaption {
+  margin-top: 0.5vh;
+  font-size: clamp(0.65rem, 1.7vh, 0.85rem);
+  font-weight: 600;
+}
+.gc-photo-actions { display: flex; gap: 6px; justify-content: center; margin-top: 0.6vh; }
+.gc-btn {
+  padding: 2px 9px;
+  font-size: clamp(0.6rem, 1.5vh, 0.75rem);
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+.gc-btn-ghost { color: #4c1d95; background: #ede9fe; }
+
+.gc-text { flex: 1; min-width: 0; }
+.gc-shayari p {
+  margin: 0;
+  font-size: clamp(0.7rem, 2.1vh, 1.05rem);
+  font-style: italic;
+  line-height: 1.5;
+}
+.gc-shayari-2 {
+  margin-top: 1vh;
+  padding-top: 1vh;
+  border-top: 1px dashed rgba(251, 191, 36, 0.5);
+  color: #fde68a;
+}
+
+.gc-mithai {
+  margin-top: 0.8vh;
+  font-size: clamp(18px, 4vh, 28px);
+  line-height: 1.1;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+.gc-mithai span { animation: giftBounce 2.2s ease-in-out infinite; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+@media (max-width: 768px) {
+  .gc-card { width: 94vw; height: auto; max-height: 90vh; }
+  .gc-body { flex-direction: column; }
+  .gc-photo { flex-basis: auto; width: 70%; }
+  .gc-text { text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gift, .gc-mithai span, .gc-bulbs span { animation: none; }
+}

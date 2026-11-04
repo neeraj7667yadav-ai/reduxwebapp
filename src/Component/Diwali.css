@@ -1,0 +1,149 @@
+.diwali {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1040;
+  overflow: hidden;
+}
+
+/* ---------- Bulbs ki lari ---------- */
+.diwali-lights {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px;
+}
+.diwali-lights::before {            /* upar ki taar */
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: rgba(30, 27, 75, 0.5);
+}
+.bulb {
+  position: relative;
+  width: 11px;
+  height: 17px;
+  margin-top: var(--y);
+  border-radius: 50% 50% 45% 45%;
+  background: var(--c);
+  box-shadow: 0 0 10px 3px var(--c);
+  animation: twinkle 1.8s ease-in-out infinite;
+  animation-delay: var(--d);
+}
+.bulb::before {                      /* bulb ki dori */
+  content: "";
+  position: absolute;
+  top: calc(var(--y) * -1 - 2px);
+  left: 50%;
+  width: 1.5px;
+  height: calc(var(--y) + 4px);
+  background: rgba(30, 27, 75, 0.5);
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 1;    transform: scale(1); }
+  50%      { opacity: 0.35; transform: scale(0.85); box-shadow: 0 0 4px 1px var(--c); }
+}
+
+/* ---------- Chingariyan ---------- */
+.sparkle {
+  position: absolute;
+  top: -10px;
+  border-radius: 50%;
+  background: #fbbf24;
+  box-shadow: 0 0 8px 2px rgba(251, 191, 36, 0.8);
+  opacity: 0;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  10%  { opacity: 0.9; }
+  90%  { opacity: 0.7; }
+  100% { transform: translateY(105vh) translateX(40px); opacity: 0; }
+}
+
+/* ---------- Diya ---------- */
+.diya {
+  position: absolute;
+  bottom: 14px;
+  width: 54px;
+  height: 22px;
+}
+.diya-left  { left: 18px; }
+.diya-right { right: 18px; }
+.diya b {                            /* diya ka pyala */
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 18px;
+  border-radius: 0 0 54px 54px;
+  background: linear-gradient(#f97316, #b45309);
+  box-shadow: 0 0 22px 6px rgba(251, 146, 60, 0.45);
+}
+.flame {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  width: 12px;
+  height: 22px;
+  margin-left: -6px;
+  border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+  background: radial-gradient(circle at 50% 70%, #fff7ae, #fbbf24 55%, #f97316);
+  box-shadow: 0 0 18px 6px rgba(251, 191, 36, 0.7);
+  transform-origin: 50% 100%;
+  animation: flicker 0.9s ease-in-out infinite alternate;
+}
+@keyframes flicker {
+  0%   { transform: scale(1, 1)      rotate(-3deg); }
+  50%  { transform: scale(0.92, 1.1) rotate(2deg); }
+  100% { transform: scale(1.05, 0.95) rotate(-1deg); }
+}
+
+/* ---------- Click par blast ---------- */
+.spark-burst {
+  position: fixed;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2000;
+  box-shadow: 0 0 8px 2px currentColor;
+  animation: burst 0.85s ease-out forwards;
+}
+@keyframes burst {
+  from { transform: translate(0, 0) scale(1); opacity: 1; }
+  to   { transform: translate(var(--dx), var(--dy)) scale(0.2); opacity: 0; }
+}
+
+/* ---------- On/Off button ---------- */
+.diwali-toggle {
+  position: fixed;
+  right: 50px;
+  bottom: 18px;
+  z-index: 1100;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  box-shadow: 0 4px 16px rgba(234, 88, 12, 0.45);
+  transition: transform 0.2s ease;
+}
+.diwali-toggle:hover { transform: scale(1.1) rotate(8deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bulb, .sparkle, .flame { animation: none; }
+}
+@media (max-width: 576px) {
+  .bulb:nth-child(even) { display: none; }   /* mobile par kam bulbs */
+}
+/* state file css */
+.card,
+.stat-card {
+  background: rgba(255, 255, 255, 0.92);
+  color: #1e1b4b;                       /* card ke andar ka text dark rahe */
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+}
