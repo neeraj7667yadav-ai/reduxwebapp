@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Adduser, Api, updateuser, userdelete, Userread } from "./APIdata.js";
+import { Adduser, Api, logout, updateuser, userdelete, Userread } from "./APIdata.js";
 
 const work = createSlice({
     name:"Dashbord",
@@ -63,6 +63,9 @@ const work = createSlice({
         })
         .addCase(Userread.fulfilled,(state,action)=>{
             state.signupdata = {...action.payload}
+        })
+        .addCase(logout.fulfilled,(state,action)=>{
+            state.isAuthenticate= action.payload
         })
         // .addCase(Api.rejected,(state,action)=>{
         // console.log ("error aya", action.error.message)

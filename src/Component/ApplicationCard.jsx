@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
 import { statusColor } from "../data/Data";
 
 export default function ApplicationCard({ item }) {
   return (
     <div className="col-12 col-md-6 col-lg-4">
+    <Link to={`/Roledetail/${item.id}`} className="nav-link">
       <div className="card app-card shadow-sm rounded-4 h-100">
         <div className="card-body">
           <div className="d-flex align-items-center gap-3 mb-3">
@@ -24,6 +26,7 @@ export default function ApplicationCard({ item }) {
           <small className="text-secondary">Applied on {item.date}</small>
         </div>
       </div>
+    </Link>
     </div>
   );
 }

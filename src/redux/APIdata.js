@@ -42,3 +42,11 @@ export const updateuser =  createAsyncThunk(
 
     },
  );
+export const logout =  createAsyncThunk(
+     "logout/user",
+    async()=>{
+   
+     return false
+
+    },
+ );

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Signup from "./Signup";
 import { useDispatch, useSelector } from "react-redux";
 import { setsearch } from "../redux/Conterslice";
+import { logout } from "../redux/APIdata";
 // import signup from "./Signup"
 function Navbar() {
   const location = useLocation();
@@ -11,8 +12,7 @@ function Navbar() {
   const seen = location.pathname === "/dashboard";
   const dispatch = useDispatch();
 const SearchFilter= useSelector((e)=>e.constructer.SearchFilter)||"";
-const {isAuthenticate}= useSelector((s)=>s.constructer)
-console.log(isAuthenticate)
+ const {isAuthenticate}= useSelector(s=>s.constructer)
  
   return (
     <>
@@ -62,6 +62,7 @@ console.log(isAuthenticate)
             <button
               className="btn btn-warning"
               type="submit"
+              onClick={()=>dispatch(logout()) }
              >
               logout
             </button>
