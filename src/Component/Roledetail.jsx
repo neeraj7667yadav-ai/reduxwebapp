@@ -1,5 +1,5 @@
 import {useNavigate, useParams } from "react-router-dom";
-import "./JobDetails.css";
+import './JobDetails.css';
 import { applications} from "../data/Data";
 function Section({ title, children }) {
   return (
